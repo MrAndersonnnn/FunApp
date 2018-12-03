@@ -29,13 +29,19 @@ namespace FunApp.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
             services.AddDbContext<FunAppContext>(options =>
                 options.UseSqlServer(
                     this.Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<FunAppUser>()
+            services.AddDefaultIdentity<FunAppUser>(
+                    options =>
+                    {
+                        options.Password.RequiredLength = 6;
+                        options.Password.RequireDigit = false;
+                        options.Password.RequireLowercase = false;
+                        options.Password.RequireNonAlphanumeric = false;
+                        options.Password.RequireUppercase = false;
+                    })
                 .AddEntityFrameworkStores<FunAppContext>();
-
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

@@ -10,4 +10,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" PrivateAssets="All" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\FunApp.Data.Models\FunApp.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Data\FunApp.Data\FunApp.Data.csproj" />
+  </ItemGroup>
+
 </Project>
