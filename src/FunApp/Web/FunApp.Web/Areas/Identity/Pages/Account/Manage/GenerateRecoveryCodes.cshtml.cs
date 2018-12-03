@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FunApp.Web.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace FunApp.Web.Areas.Identity.Pages.Account.Manage
+namespace FunApp.Data.Models.Pages.Account.Manage
 {
     public class GenerateRecoveryCodesModel : PageModel
     {

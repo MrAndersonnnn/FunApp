@@ -1,5 +1,3 @@
-using System;
-
 namespace FunApp.Web.Models
 {
     public class ErrorViewModel
