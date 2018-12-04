@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using AngleSharp;
 using AngleSharp.Parser.Html;
 using FunApp.Data;
@@ -42,7 +43,24 @@ namespace Sandbox
             for (int i = 1; i < 10000; i++)
             {
                 var url = "http://fun.dir.bg/vic_open.php?id=" + i;
-                var html = webClient.DownloadString(url);
+                string html = null;
+                for (int j = 0; j < 10; j++)               
+                {
+                    try
+                    {
+                        html = webClient.DownloadString(url);
+                        break;
+                    }
+                    catch (Exception e)
+                    {
+                        Thread.Sleep(10000);                        
+                    }
+                }
+
+                if (string.IsNullOrWhiteSpace(html))
+                {
+                    continue;
+                }
 
                 var document = parser.Parse(html);
                 var jokeContent = document.QuerySelector("#newsbody")?.TextContent.Trim();
@@ -66,7 +84,7 @@ namespace Sandbox
                     dbContext.SaveChanges();
                 }
 
-                Console.WriteLine($"{i} => Joke number {i} added");
+                Console.WriteLine($"{i} => {categoryName}");
             }          
             //
 
